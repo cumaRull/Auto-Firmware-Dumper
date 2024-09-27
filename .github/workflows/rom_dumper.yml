@@ -294,3 +294,14 @@ jobs:
           /home/Auto-Dumper/dtb.img
         if-no-files-found: ignore
       continue-on-error: true
+
+
+    - name: Telegram Notification
+      if: ${{ cancelled() || failure() }}
+      continue-on-error: true
+      uses: xinthink/action-telegram@v1.1
+      with:
+          chatId: ${{ secrets.TG_CHAT_ID }}
+          botToken: ${{ secrets.TG_TOKEN }}
+          jobStatus: ${{ job.status }}
+          skipSuccess: true
