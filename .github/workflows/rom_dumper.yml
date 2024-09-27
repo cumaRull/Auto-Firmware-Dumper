@@ -187,7 +187,9 @@ jobs:
         git branch -M dump-"$codename"-"$dat"
         git add .
         git commit -s -m "Dump for $brand $codename"
-        gh repo create dump_"$brand"_"$codename" --public --description="Dump for $brand $codename " --source=. --remote=origin --push
+        git push -u origin dump-"$codename"-"$dat"
+        gh repo create dump_"$brand"_"$codename" --public --description="Dump for $brand $codename " --source=. --remote=origin 
+        git push -u origin dump-"$codename"-"$dat"
         cd /home/Auto-Dumper
         mkdir -p vnd_project/android/device/"$brand"/"$codename"
         cd DumprX/out
